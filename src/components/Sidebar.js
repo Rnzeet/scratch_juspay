@@ -1,0 +1,151 @@
+import React, { useEffect, useState } from "react";
+import Icon from "./Icon";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import { key_pressed, backdrop1, loudness, message, randomPosition } from "./data";
+import PreviewArea from "./PreviewArea";
+export default function Sidebar() {
+  const handleDragStart = (event, text) => {
+    event.dataTransfer.setData('text', text);
+  }
+  const keyPressed = key_pressed[0];
+  const backDrop1 = backdrop1[0];
+  const loudNess = loudness[0];
+  const messageBroad = message[0];
+  const randomPos = randomPosition[0];
+
+  const handleClick = () => {
+      PreviewArea ({className:"mx=40"})  
+  }
+  return (
+    <div className="w-60 flex-none h-full overflow-y-auto flex flex-col items-start p-2 border-r border-gray-200">
+      <div className="font-bold"> {"Events"} </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"When  clicked")}>
+        <div className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer"
+        >
+          {"When"}
+          <Icon name="flag" size={15} className="text-green-600 mx-2" />
+          {"clicked"}
+        </div>
+      </div>
+      <div  draggable={true}
+        onDragStart={(event) => handleDragStart(event,"When key Pressed")}className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"When "}
+        <Dropdown options={key_pressed} value={keyPressed} placeholder="select option" className="text-xs" />
+        {"key pressed"}
+      </div>
+
+      <div  draggable={true}
+        onDragStart={(event) => handleDragStart(event,"When this sprite clicked")}className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"When this sprite clicked"}
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"When backdrop switches to")}className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"When backdrop switches to"}
+        <Dropdown options={backdrop1} value={backDrop1} placeholder="select option" className="text-xs" />
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"When >10")}className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"When "}
+        <Dropdown options={loudness} value={loudNess} placeholder="select option" className="text-xs" />
+        {">"}
+        <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"10"}</div>
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"When I receive")}className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"When I receive"}
+        <Dropdown options={message} value={messageBroad} placeholder="select option" className="text-xs" />
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"broadcast")}className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"broadcast"}
+        <Dropdown options={message} value={messageBroad} placeholder="select option" className="text-xs" />
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"broadcast")}className="flex flex-row flex-wrap bg-yellow-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"broadcast"}
+        <Dropdown options={message} value={messageBroad} placeholder="select option" className="text-xs" />
+      </div>
+
+
+
+
+
+      <div className="font-bold"> {"Motion"} </div>
+      <button draggable={true}
+        onDragStart={(event) => handleDragStart(event,"Move 10 steps")}onClick={handleClick} className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer after:content-['*'] after:bg-red-500 after:px-2 after:py-2 after:my-2 before:content-['*'] before:bg-red-500 before:px-1 before:py-1 before:my-1" >
+        {"Move "}
+        <div className="mx-2 py-1 px-2 bg-white rounded-md text-black " >{"10"}</div>{"steps"}
+      </button>
+      <button draggable={true}
+        onDragStart={(event) => handleDragStart(event,"Turn 15 degrees")}onClick={handleClick} className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"Turn "}
+        <Icon name="undo" size={15} className="text-white mx-2" />
+        <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"15"}</div> {"degrees"}
+      </button>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"Turn 15 degrees")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"Turn "}
+        <Icon name="redo" size={15} className="text-white mx-2" />
+        <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"15"}</div> {"degrees"}
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"go to Select option")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"go to"}
+        <Dropdown options={randomPosition} value={randomPos} placeholder="select option" className="text-xs" />
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"go tox:")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"go to x:"}  <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"0"}</div> {"y"} <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"0"}</div>
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"Point in direction")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"Point in direction"}  <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"90"}</div>
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"change x by 10")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"change x by"}  <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"10"}</div>
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"change y by 10")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"change y by "}  <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"10"}</div>
+      </div>
+
+
+
+      <div className="font-bold"> {"Looks"} </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"say hello")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"say"}   <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"Hello!"}</div> {"for"}   <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"2"}</div>{" seconds"}
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"say hello")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"say"}  <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"Hello!"}</div>
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"think him for")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"think"}  <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"Hmm"}</div>{"for"}  <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"2"}</div> {"seconds"}
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"think him")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"think"}
+        <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"Hmm"}</div>
+      </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"change size by 10")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"change size by"}
+        <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"10"}</div>
+      </div>
+
+
+      <div className="font-bold"> {"Controls"} </div>
+      <div draggable={true}
+        onDragStart={(event) => handleDragStart(event,"Wait 1 seconds")}className="flex flex-row flex-wrap bg-blue-500 text-white px-2 py-1 my-2 text-sm cursor-pointer">
+        {"wait"}
+        <div className="mx-2 py-1 px-2 bg-white rounded-md text-black" >{"1"}</div>
+        {"seconds"}
+      </div>
+    </div>
+  );
+}
