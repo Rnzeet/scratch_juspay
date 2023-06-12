@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { rootSelectors } from "../redux/selectors";
+import { connect } from "react-redux";
 
-const  CatSprite=(className) =>{
-  const [change,setChange]= useState(0);
-  useEffect(()=>{
-    setChange(className);
-  },[change])
+const CatSprite = (props) => {
+  const {
+    getCharacterPosition
+  } = props
+  const [change, setChange] = useState(0);
+  
+  useEffect(() => {
+    setChange(getCharacterPosition);
+  }, [getCharacterPosition])
   return (
     <div>
-      <svg     
+      <svg
         className={`${change}`}
         xmlns="http://www.w3.org/2000/svg"
         width="95.17898101806641"
@@ -186,8 +192,21 @@ const  CatSprite=(className) =>{
           </g>
         </g>
       </svg>
-      </div>
+    </div>
   );
 
-  }
-  export default CatSprite;
+}
+
+const mapStateToProps = (state) => {
+  return {
+    getCharacterPosition: rootSelectors.getCharacterPosition(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // ...bindActionCreators(UserLMSAction, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CatSprite);
