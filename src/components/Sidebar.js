@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Icon from "./Icon";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { key_pressed, backdrop1, loudness, message, randomPosition } from "./data";
-import PreviewArea from "./PreviewArea";
 import { connect } from "react-redux";
-import { bindActionCreators, Dispatch } from "redux";
+import { bindActionCreators } from "redux";
 import {rootActions} from "../redux/action";
 
 function Sidebar(props) {
